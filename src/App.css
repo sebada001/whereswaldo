@@ -1,38 +1,106 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Fascinate&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;1,400&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,700;1,400&display=swap');
+:root{
+  --white: #fdfaf8;
+  --yellow:#f3e600;
+  --red: #e64132;
+  --pink: #ec9dd0;
+  --current-val: var(--yellow);
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Fascinate', cursive;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+span{
+  color:var(--yellow)
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App{
+  display: grid;
+  height: 100vh;
+  width: 100%;
+  grid-template-columns: 1;
+  grid-template-rows: 1fr 7fr 1fr;
+}
+#head{
+  display: flex;
+  justify-content: center;
+  background-color: var(--white);
+  box-shadow: 0px 2px 2px var(--white);
+  color: var(--red);
+  font-size: 40px;
+  z-index: 10;
+}
+#bod{
+  background-color: var(--red);
+  color:var(--pink);
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 1em;
+}
+#foot{
+  background-color: var(--white);
+  box-shadow: 2px -2px 2px var(--white);
+  z-index: 10;
+}
+.subtitle{
+  color: var(--white);
+  font-size: 48px;
+}
+.text{
+  color: var(--white);
+  font-size: 40px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  margin: 20px 0;
+}
+.characters-tutorial{
+  background-image: url("./waldo.png");
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+}
+.picture-tutorial{
+  background-image: url("./waldo-background.png");
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+}
+.image-block{
+  display: flex;
+}
+.wrap-p{
+  color: var(--yellow);
+  width: 400px;
+  height: 80px;
+  display: flex;
+  margin-top: 10px;
+  font-size: 30px;
+  justify-content: space-between;
+  margin: 20px 0;
+  margin-right: 5px;
+}
+.wrap-p .two{
+  display: flex;
+  align-items: flex-end;
+}
+#click{
+  color: var(--current-val);
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+#click:hover{
+  cursor: pointer;
+}
+#foot{
+  display: flex;
+  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: 40px;
+  color:var(--red)
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#foot span{
+  margin: 0 15px;
 }
