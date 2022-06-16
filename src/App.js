@@ -1,4 +1,5 @@
 import "./App.css";
+import RouteSwitch from "./RouteSwitch";
 
 //prevent double click
 document.addEventListener("mousedown", (e) => {
@@ -28,9 +29,8 @@ function App() {
     const currentColor = getComputedStyle(
       document.documentElement
     ).getPropertyValue("--current-val");
-    if (currentColor == `#fdfaf8`) colorMe("yellow");
-    if (currentColor == `#f3e600`) colorMe("pink");
-    if (currentColor == `#ec9dd0`) colorMe("white");
+    if (currentColor == `#f0917b`) colorMe("light2");
+    if (currentColor == `#eed6bb`) colorMe("light1");
   };
   return (
     <div className="App">
@@ -40,33 +40,7 @@ function App() {
           <span>d</span>o
         </h1>
       </header>
-      <div id="bod">
-        <h2 className="subtitle">How to play:</h2>
-        <p className="text">
-          <span>Look</span> for each one of the characters in the picture.
-        </p>
-        <div className="image-block">
-          <div className="characters-tutorial"></div>
-          <div className="wrap-p">
-            <p className="one">👈 Character </p>
-            <p className="two">Picture 👉 </p>
-          </div>
-          <div className="picture-tutorial"></div>
-        </div>
-        <p className="text">
-          <span id="click" onClick={changeColor}>
-            Click
-          </span>{" "}
-          when you have found a character, and select it from the dropdown menu.
-        </p>
-        <p className="text">
-          When you start the game, a <span>timer</span> starts.
-        </p>
-        <p className="text">
-          If you find all characters before the timer ends, you{" "}
-          <span>win!</span>
-        </p>
-      </div>
+      <RouteSwitch changeColor={changeColor}></RouteSwitch>
       <footer id="foot">
         Only <span> fun </span> allowed!
       </footer>
