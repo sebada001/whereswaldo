@@ -29,8 +29,8 @@ function App() {
     const currentColor = getComputedStyle(
       document.documentElement
     ).getPropertyValue("--current-val");
-    if (currentColor == `#f0917b`) colorMe("light2");
-    if (currentColor == `#eed6bb`) colorMe("light1");
+    if (currentColor === `#f0917b`) colorMe("light2");
+    if (currentColor === `#eed6bb`) colorMe("light1");
   };
   return (
     <div className="App">
