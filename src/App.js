@@ -1,5 +1,6 @@
 import "./App.css";
 import RouteSwitch from "./RouteSwitch";
+import React, { useState } from "react";
 
 //prevent double click
 document.addEventListener("mousedown", (e) => {
@@ -9,6 +10,7 @@ document.addEventListener("mousedown", (e) => {
 });
 
 function App() {
+  const [score, setScore] = useState(0);
   function clearSelection() {
     if (document.selection && document.selection.empty) {
       document.selection.empty();
@@ -17,7 +19,6 @@ function App() {
       sel.removeAllRanges();
     }
   }
-
   clearSelection();
   const changeColor = function colorChanger() {
     function colorMe(color) {
@@ -40,7 +41,11 @@ function App() {
           <span>d</span>o
         </h1>
       </header>
-      <RouteSwitch changeColor={changeColor}></RouteSwitch>
+      <RouteSwitch
+        changeColor={changeColor}
+        score={score}
+        setScore={setScore}
+      ></RouteSwitch>
       <footer id="foot">
         Only <span> fun </span> allowed!
       </footer>

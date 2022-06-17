@@ -1,18 +1,65 @@
-import React from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 
-function Game() {
-  setTimeout(() => {
-    document.querySelector("#pop-up").style.scale = "0";
-  }, "50");
-  let coords;
+function useInterval(callback, delay) {
+  const savedCallback = useRef();
+  // Remember the latest callback.
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+  // Set up the interval.
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+}
+let coords = [0, 0];
+function Game(props) {
+  const { score, setScore } = props;
+  const app = document.querySelector(".App");
+  app.style.overflow = "hidden";
+  const navigate = useNavigate();
+  const [state, setState] = useState([4, 4]);
+  const count = function () {
+    if (state[0] === 4 && state[1] === 0) {
+      hideModal();
+    }
+    if (state[0] === 0 && state[1] === 0) {
+      gameOver();
+    }
+    if (state[1] === 0) {
+      sixty();
+    } else {
+      tickDown();
+    }
+  };
+  const tickDown = () => {
+    setState((prevState) => [prevState[0], prevState[1] - 1]);
+  };
+  const sixty = () => {
+    setState((prevState) => [prevState[0] - 1, 59]);
+  };
+  useInterval(() => {
+    count();
+  }, 1000);
+  const gameOver = useCallback(
+    () => navigate("/gameover", { replace: true }),
+    [navigate]
+  );
   const clickAction = (e, char) => {
     if (e.target !== e.currentTarget) return false;
     if (char !== undefined) {
-      checkTarget(coords, char);
+      if (checkTarget(coords, char)) {
+        handleScore();
+      }
       return;
     }
     coords = [e.pageX, e.pageY];
-    console.log(coords);
     if (document.querySelector("#pop-up").style.scale === "0") {
       showPopUp(coords);
       showBorder(coords);
@@ -21,6 +68,18 @@ function Game() {
       hidePopUp();
       return;
     }
+  };
+  const checkForWin = () => {
+    let scoreCurrent = document.querySelector("#score-number");
+    if (scoreCurrent.textContent === "2") {
+      setTimeout(() => {
+        gameOver();
+      }, "500");
+    }
+  };
+  const handleScore = () => {
+    checkForWin();
+    setScore((prv) => prv + 1);
   };
   const showBorder = (coords) => {
     const border = document.querySelector("#border");
@@ -46,6 +105,15 @@ function Game() {
   };
   return (
     <div id="game">
+      <div id="blackout"></div>
+      <div id="counter">
+        <p>{state[0]}</p>:<p>{calculateNumber(state[1])}</p>
+      </div>
+      <div id="score">
+        <p>
+          Score: <span id="score-number">{score}</span>
+        </p>
+      </div>
       <div>
         <div id="border"></div>
         <div id="pop-up" onClick={clickAction}>
@@ -66,14 +134,30 @@ function Game() {
           ></div>
         </div>
       </div>
-      <div
-        id="game-image"
-        // onTouchStart={clickAction}
-        onClick={clickAction}
-      ></div>
+      <div id="img-parent">
+        <div
+          style={{ filter: "blur(6px)" }}
+          id="game-image"
+          onClick={clickAction}
+        ></div>
+      </div>
     </div>
   );
 }
+
+const hideModal = () => {
+  document.querySelector("#blackout").style.display = "none";
+  document.querySelector("#game-image").style.filter = "none";
+  document.querySelector("#counter").style.top = "25px";
+};
+
+const calculateNumber = function (number) {
+  if (number > 9) {
+    return number.toString();
+  } else {
+    return "0" + number.toString();
+  }
+};
 
 const checkTarget = function targetCheckerMouse(coords, char) {
   if (
@@ -84,7 +168,7 @@ const checkTarget = function targetCheckerMouse(coords, char) {
     char === "scoob"
   ) {
     removeCharacter(char);
-    return;
+    return true;
   }
   if (
     coords[0] < 1816 &&
@@ -94,7 +178,7 @@ const checkTarget = function targetCheckerMouse(coords, char) {
     char === "duff"
   ) {
     removeCharacter(char);
-    return;
+    return true;
   }
   if (
     coords[0] < 1203 &&
@@ -104,9 +188,10 @@ const checkTarget = function targetCheckerMouse(coords, char) {
     char === "waldo"
   ) {
     removeCharacter(char);
-    return;
+    return true;
   }
   removeCharacter("miss");
+  return false;
 };
 const removeCharacter = function (char) {
   let popup = document.querySelector("#pop-up");
