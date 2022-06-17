@@ -13,6 +13,7 @@
   margin: 0;
   padding: 0;
   font-family: 'Fascinate', cursive;
+  box-sizing: border-box;
 }
 span{
   color:var(--light1)
@@ -20,12 +21,11 @@ span{
 .App{
   padding: 0;
   margin: 0;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
   width: 100%;
-  grid-template-rows: 1fr 7fr 1fr;
   background-color: var(--darker2);
-  align-items: center;
 }
 #head{
   display: flex;
@@ -34,8 +34,8 @@ span{
   box-shadow: 0px 2px 2px var(--darker2);
   color: var(--light2);
   font-size: 40px;
-  z-index: 10;
   width: 100%;
+  height: 108px;
 }
 #bod{
   scale: 0;
@@ -44,15 +44,34 @@ span{
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* padding: 1em; */
-  height: 631px;
+  flex-grow: 1;
+  flex-basis: 0;
   overflow-y: scroll;
 }
 #foot{
   background-color: var(--darker2);
   box-shadow: 2px -2px 2px var(--darker2);
   z-index: 10;
-  height: 54px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color:var(--light2)
+}
+#read{
+  background-color: var(--dark2);
+  scale: 0;
+  color: var(--light2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: 0;
+  overflow-y: scroll;
+}
+#foot span{
+  margin: 0 15px;
 }
 .subtitle{
   color: var(--light1);
@@ -103,27 +122,7 @@ span{
 #click:hover{
   cursor: pointer;
 }
-#foot{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-  color:var(--light2)
-}
-#foot span{
-  margin: 0 15px;
-}
-#read{
-  background-color: var(--dark2);
-  scale: 0;
-  color: var(--light2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-height: 681px;
-  overflow-y: scroll;
-  padding: 1em;
-}
+
 #try-to-find{
   font-family: 'Josefin Sans', sans-serif;
   margin-bottom: 2rem;
@@ -176,7 +175,6 @@ span{
 #pop-up{
   scale: 0;
   position: absolute;
-  height: 400px;
   width: 200px;
   left: 0;
   top: 0;
@@ -187,6 +185,10 @@ span{
   border-radius: 10px;
   border-color: var(--darker2);
   transition: all 0.1s linear;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 #border{
   position: absolute;
@@ -198,6 +200,11 @@ span{
   border: 4px #ff512a dotted;
   border-radius: 50%;
   transition: all 0.1s linear;
+}
+.smaller{
+  width: 120px !important;
+  height: 120px !important;
+  transition: all 0.33s ease-in-out;
 }
 
 /*
