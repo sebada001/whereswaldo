@@ -16,8 +16,8 @@ function Game() {
   const showBorder = (coords) => {
     const border = document.querySelector("#border");
     setTimeout(() => {
-      border.style.left = coords[0] - 20 + "px";
-      border.style.top = coords[1] - 20 + "px";
+      border.style.left = coords[0] - 15 + "px";
+      border.style.top = coords[1] - 15 + "px";
       border.style.scale = "1";
     }, "90");
   };
