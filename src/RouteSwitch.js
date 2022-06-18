@@ -6,6 +6,7 @@ import GameOver from "./GameOver";
 
 const RouteSwitch = (props) => {
   const { changeColor, setScore, score } = props;
+  const { state, setState } = props;
   return (
     <BrowserRouter>
       <Routes>
@@ -13,9 +14,19 @@ const RouteSwitch = (props) => {
         <Route path="/getReady" element={<GetReady />} />
         <Route
           path="/game"
-          element={<Game setScore={setScore} score={score} />}
+          element={
+            <Game
+              setScore={setScore}
+              score={score}
+              state={state}
+              setState={setState}
+            />
+          }
         />
-        <Route path="/gameover" element={<GameOver score={score} />} />
+        <Route
+          path="/gameover"
+          element={<GameOver score={score} state={state} setState={setState} />}
+        />
       </Routes>
     </BrowserRouter>
   );

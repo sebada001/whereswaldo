@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 function useInterval(callback, delay) {
@@ -20,11 +20,10 @@ function useInterval(callback, delay) {
 }
 let coords = [0, 0];
 function Game(props) {
-  const { score, setScore } = props;
+  const { score, setScore, state, setState } = props;
   const app = document.querySelector(".App");
   app.style.overflow = "hidden";
   const navigate = useNavigate();
-  const [state, setState] = useState([4, 4]);
   const count = function () {
     if (state[0] === 4 && state[1] === 0) {
       hideModal();
@@ -116,7 +115,7 @@ function Game(props) {
       </div>
       <div>
         <div id="border"></div>
-        <div id="pop-up" onClick={clickAction}>
+        <div id="pop-up" onClick={clickAction} style={{ scale: "0" }}>
           <div
             id="img-char-1"
             className="smaller"

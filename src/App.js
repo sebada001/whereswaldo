@@ -10,6 +10,7 @@ document.addEventListener("mousedown", (e) => {
 });
 
 function App() {
+  const [state, setState] = useState([4, 4]);
   const [score, setScore] = useState(0);
   function clearSelection() {
     if (document.selection && document.selection.empty) {
@@ -45,6 +46,8 @@ function App() {
         changeColor={changeColor}
         score={score}
         setScore={setScore}
+        state={state}
+        setState={setState}
       ></RouteSwitch>
       <footer id="foot">
         Only <span> fun </span> allowed!
