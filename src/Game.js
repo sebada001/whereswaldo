@@ -83,7 +83,7 @@ function Game(props) {
       return;
     }
     coords = [e.pageX, e.pageY];
-    if (document.querySelector("#pop-up").style.scale === "0") {
+    if (document.querySelector("#pop-up").classList.contains("scaler")) {
       showPopUp(coords);
       showBorder(coords);
       return;
@@ -109,7 +109,7 @@ function Game(props) {
     setTimeout(() => {
       border.style.left = coords[0] - 15 + "px";
       border.style.top = coords[1] - 15 + "px";
-      border.style.scale = "1";
+      border.classList.remove("scaler");
     }, "90");
   };
   const showPopUp = (coords) => {
@@ -117,14 +117,14 @@ function Game(props) {
     setTimeout(() => {
       popUp.style.left = coords[0] + 15 + "px";
       popUp.style.top = coords[1] + "px";
-      popUp.style.scale = "1";
+      popUp.classList.remove("scaler");
     }, "90");
   };
   const hidePopUp = () => {
     const popUp = document.querySelector("#pop-up");
-    popUp.style.scale = "0";
+    popUp.classList.add("scaler");
     const border = document.querySelector("#border");
-    border.style.scale = "0";
+    border.classList.add("scaler");
   };
   return (
     <div id="game">
@@ -140,7 +140,7 @@ function Game(props) {
       </div>
       <div>
         <div id="border"></div>
-        <div id="pop-up" onClick={clickAction} style={{ scale: "0" }}>
+        <div id="pop-up" onClick={clickAction} className="scaler">
           <div
             id="img-char-1"
             className="smaller"
@@ -189,15 +189,16 @@ const calculateNumber = function (number) {
 };
 
 const checkTarget = async function targetCheckerMouse(coords, char) {
-  let coordsCheck = await giveMeCoords(char);
+  const thisChar = char;
+  let coordsCheck = await giveMeCoords(thisChar);
   let coordies = coordsCheck.coordinates;
   if (
-    coords[0] < (await coordies[0]) &&
-    coords[0] > (await coordies[1]) &&
-    coords[1] < (await coordies[2]) &&
-    coords[1] > (await coordies[3])
+    coords[0] < coordies[0] &&
+    coords[0] > coordies[1] &&
+    coords[1] < coordies[2] &&
+    coords[1] > coordies[3]
   ) {
-    removeCharacter(char);
+    removeCharacter(thisChar);
     return true;
   }
   removeCharacter("miss");
@@ -247,8 +248,8 @@ const flashScore = function (popup, border, char) {
     popup.style.backgroundColor = "#4f2a3e";
   }, "300");
   setTimeout(() => {
-    popup.style.scale = "0";
-    border.style.scale = "0";
+    popup.classList.add("scaler");
+    border.classList.add("scaler");
   }, "850");
 };
 const flashMiss = function (popup, border) {
@@ -265,8 +266,8 @@ const flashMiss = function (popup, border) {
     popup.style.backgroundColor = "#4f2a3e";
   }, "300");
   setTimeout(() => {
-    popup.style.scale = "0";
-    border.style.scale = "0";
+    popup.classList.add("scaler");
+    border.classList.add("scaler");
   }, "550");
 };
 
