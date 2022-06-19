@@ -168,7 +168,6 @@ span{
   background-color: var(--dark2);  
 }
 #game-image{
-  background-image: url("./wheres-waldo-8.jpg");
   background-size: contain;
   background-repeat: no-repeat;
   height: 1400px;
@@ -265,6 +264,15 @@ span{
 }
 #img-parent{
   overflow: hidden;
+}
+#loading{
+  position: absolute;
+  display: flex;
+  top: 10%;
+  left: calc(50% - 300px);
+  font-size: 64px;
+  color: white;
+  z-index: 999;
 }
 
 

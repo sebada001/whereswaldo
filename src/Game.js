@@ -20,11 +20,32 @@ function useInterval(callback, delay) {
   }, [delay]);
 }
 let coords = [0, 0];
+
 function Game(props) {
+  let gameLoaded = false;
+  {
+    //game start
+    const gameStart = () => {
+      gameLoaded = true;
+      document.querySelector("#loading").style.display = "none";
+      document.querySelector("#counter").style.display = "flex";
+    };
+    let imgSrc =
+      "https://firebasestorage.googleapis.com/v0/b/where-s-waldo-56d03.appspot.com/o/wheres-waldo-8.jpg?alt=media&token=521727ad-0f67-4536-a060-bcfe235b1eb1";
+    let image = new Image();
+    image.addEventListener("load", function () {
+      document.querySelector(
+        "#game-image"
+      ).style.backgroundImage = `url(${imgSrc})`;
+      gameStart();
+    });
+    image.src = imgSrc;
+  }
   const { score, setScore, state, setState } = props;
   const app = document.querySelector(".App");
   app.style.overflow = "hidden";
   const navigate = useNavigate();
+
   const count = function () {
     if (state[0] === 4 && state[1] === 0) {
       hideModal();
@@ -45,7 +66,9 @@ function Game(props) {
     setState((prevState) => [prevState[0] - 1, 59]);
   };
   useInterval(() => {
-    count();
+    if (gameLoaded) {
+      count();
+    }
   }, 1000);
   const gameOver = useCallback(
     () => navigate("/gameover", { replace: true }),
@@ -106,7 +129,8 @@ function Game(props) {
   return (
     <div id="game">
       <div id="blackout"></div>
-      <div id="counter">
+      <div id="loading">Loading img...</div>
+      <div id="counter" style={{ display: "none" }}>
         <p>{state[0]}</p>:<p>{calculateNumber(state[1])}</p>
       </div>
       <div id="score">

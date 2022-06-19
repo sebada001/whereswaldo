@@ -24,4 +24,5 @@ async function getCoords(db) {
   });
   return coordList;
 }
+
 export { getCoords, db };
