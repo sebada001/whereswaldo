@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { getCoords, db } from "./FIrebase";
 
 function useInterval(callback, delay) {
   const savedCallback = useRef();
@@ -50,10 +51,10 @@ function Game(props) {
     () => navigate("/gameover", { replace: true }),
     [navigate]
   );
-  const clickAction = (e, char) => {
+  const clickAction = async (e, char) => {
     if (e.target !== e.currentTarget) return false;
     if (char !== undefined) {
-      if (checkTarget(coords, char)) {
+      if (await checkTarget(coords, char)) {
         handleScore();
       }
       return;
@@ -143,6 +144,11 @@ function Game(props) {
     </div>
   );
 }
+const giveMeCoords = async (name) => {
+  let array = await getCoords(db);
+  let res = array.find((el) => el.name === name);
+  return res;
+};
 
 const hideModal = () => {
   document.querySelector("#blackout").style.display = "none";
@@ -158,40 +164,42 @@ const calculateNumber = function (number) {
   }
 };
 
-const checkTarget = function targetCheckerMouse(coords, char) {
+const checkTarget = async function targetCheckerMouse(coords, char) {
+  let coordsCheck = await giveMeCoords(char);
+  let coordies = coordsCheck.coordinates;
   if (
-    coords[0] < 433 &&
-    coords[0] > 388 &&
-    coords[1] < 230 &&
-    coords[1] > 147 &&
-    char === "scoob"
+    coords[0] < (await coordies[0]) &&
+    coords[0] > (await coordies[1]) &&
+    coords[1] < (await coordies[2]) &&
+    coords[1] > (await coordies[3])
   ) {
     removeCharacter(char);
     return true;
   }
-  if (
-    coords[0] < 1816 &&
-    coords[0] > 1778 &&
-    coords[1] < 1105 &&
-    coords[1] > 1005 &&
-    char === "duff"
-  ) {
-    removeCharacter(char);
-    return true;
-  }
-  if (
-    coords[0] < 1203 &&
-    coords[0] > 1159 &&
-    coords[1] < 349 &&
-    coords[1] > 283 &&
-    char === "waldo"
-  ) {
-    removeCharacter(char);
-    return true;
-  }
+  // if (
+  //   coords[0] < 1816 &&
+  //   coords[0] > 1778 &&
+  //   coords[1] < 1105 &&
+  //   coords[1] > 1005 &&
+  //   char === "duff"
+  // ) {
+  //   removeCharacter(char);
+  //   return true;
+  // }
+  // if (
+  //   coords[0] < 1203 &&
+  //   coords[0] > 1159 &&
+  //   coords[1] < 349 &&
+  //   coords[1] > 283 &&
+  //   char === "waldo"
+  // ) {
+  //   removeCharacter(char);
+  //   return true;
+  // }
   removeCharacter("miss");
   return false;
 };
+
 const removeCharacter = function (char) {
   let popup = document.querySelector("#pop-up");
   const border = document.querySelector("#border");
