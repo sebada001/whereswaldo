@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/whereswaldo/static/css/main.c222db04.css",
-    "main.js": "/whereswaldo/static/js/main.ca5ba625.js",
+    "main.js": "/whereswaldo/static/js/main.f21b3caf.js",
     "static/media/wheres-waldo-8.jpg": "/whereswaldo/static/media/wheres-waldo-8.8125b942c261aa2ef4c9.jpg",
     "static/media/waldo-background.png": "/whereswaldo/static/media/waldo-background.ac9ddc6095874c84a38c.png",
     "static/media/scooby-doo.png": "/whereswaldo/static/media/scooby-doo.cabe932699a50b59a839.png",
@@ -10,10 +10,10 @@
     "static/media/waldo_1.png": "/whereswaldo/static/media/waldo_1.e3a647a791b9ed718347.png",
     "index.html": "/whereswaldo/index.html",
     "main.c222db04.css.map": "/whereswaldo/static/css/main.c222db04.css.map",
-    "main.ca5ba625.js.map": "/whereswaldo/static/js/main.ca5ba625.js.map"
+    "main.f21b3caf.js.map": "/whereswaldo/static/js/main.f21b3caf.js.map"
   },
   "entrypoints": [
     "static/css/main.c222db04.css",
-    "static/js/main.ca5ba625.js"
+    "static/js/main.f21b3caf.js"
   ]
 }
