@@ -48,7 +48,7 @@ function App() {
         setScore={setScore}
         state={state}
         setState={setState}
-      ></RouteSwitch>
+      />
       <footer id="foot">
         Only <span> fun </span> allowed!
       </footer>
