@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/whereswaldo/static/css/main.9f655aed.css",
-    "main.js": "/whereswaldo/static/js/main.86534777.js",
+    "main.css": "/whereswaldo/static/css/main.9e2cfe7a.css",
+    "main.js": "/whereswaldo/static/js/main.3f98af19.js",
     "static/media/waldo-background.png": "/whereswaldo/static/media/waldo-background.ac9ddc6095874c84a38c.png",
     "static/media/scooby-doo.png": "/whereswaldo/static/media/scooby-doo.cabe932699a50b59a839.png",
     "static/media/waldo.png": "/whereswaldo/static/media/waldo.a28ae64c7277bc5aafad.png",
     "static/media/duffman.png": "/whereswaldo/static/media/duffman.dd1011890d1e94fb3b62.png",
     "static/media/waldo_1.png": "/whereswaldo/static/media/waldo_1.e3a647a791b9ed718347.png",
     "index.html": "/whereswaldo/index.html",
-    "main.9f655aed.css.map": "/whereswaldo/static/css/main.9f655aed.css.map",
-    "main.86534777.js.map": "/whereswaldo/static/js/main.86534777.js.map"
+    "main.9e2cfe7a.css.map": "/whereswaldo/static/css/main.9e2cfe7a.css.map",
+    "main.3f98af19.js.map": "/whereswaldo/static/js/main.3f98af19.js.map"
   },
   "entrypoints": [
-    "static/css/main.9f655aed.css",
-    "static/js/main.86534777.js"
+    "static/css/main.9e2cfe7a.css",
+    "static/js/main.3f98af19.js"
   ]
 }
