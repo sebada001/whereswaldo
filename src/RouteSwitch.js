@@ -8,7 +8,7 @@ const RouteSwitch = (props) => {
   const { changeColor, setScore, score } = props;
   const { state, setState } = props;
   return (
-    <BrowserRouter basename="/">
+    <BrowserRouter basename="/whereswaldo">
       <Routes>
         <Route path="/" element={<Body changeColor={changeColor} />} />
         <Route path="/getReady" element={<GetReady />} />
