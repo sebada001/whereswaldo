@@ -176,26 +176,6 @@ const checkTarget = async function targetCheckerMouse(coords, char) {
     removeCharacter(char);
     return true;
   }
-  // if (
-  //   coords[0] < 1816 &&
-  //   coords[0] > 1778 &&
-  //   coords[1] < 1105 &&
-  //   coords[1] > 1005 &&
-  //   char === "duff"
-  // ) {
-  //   removeCharacter(char);
-  //   return true;
-  // }
-  // if (
-  //   coords[0] < 1203 &&
-  //   coords[0] > 1159 &&
-  //   coords[1] < 349 &&
-  //   coords[1] > 283 &&
-  //   char === "waldo"
-  // ) {
-  //   removeCharacter(char);
-  //   return true;
-  // }
   removeCharacter("miss");
   return false;
 };
